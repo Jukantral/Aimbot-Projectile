@@ -8,14 +8,17 @@ public class EquationRouge : MonoBehaviour
     public float z0;
     public float y0; // marche pas
 
-    public float angle;
-    public float speed;
+    
+    public float angleYwithPlan;
+    public float angleXZ;
 
-    public float speedZ;
+    public float speed;
     void Update()
     {
         var time = GameObject.FindGameObjectWithTag("Finish").GetComponent<Temps>().time;
         float val = speed * time;
-        transform.position = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad) * val + x0, speedZ * time + y0, Mathf.Sin(angle * Mathf.Deg2Rad) * val + z0);
+        transform.position = new Vector3(Mathf.Sin(angleXZ * Mathf.Deg2Rad) * Mathf.Cos(angleYwithPlan * Mathf.Deg2Rad) * val + x0,
+                                         val * Mathf.Sin(angleYwithPlan * Mathf.Deg2Rad) + y0,
+                                         Mathf.Cos(angleXZ * Mathf.Deg2Rad) * val * Mathf.Cos(angleYwithPlan * Mathf.Deg2Rad) + z0);
     }
 }
