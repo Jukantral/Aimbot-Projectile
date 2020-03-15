@@ -17,23 +17,25 @@ public class EquationOrange : MonoBehaviour
     public float initRouge;
     private void Start()
     {
-        //initRouge = rouge.transform.position.z;
+        transform.LookAt(GameObject.FindGameObjectWithTag("Foe").transform);
     }
     void Update()
     {
         var temps = GameObject.FindGameObjectWithTag("Finish").GetComponent<Temps>().time;
         speedRouge = rouge.GetComponent<EquationRouge>().speed;
-        float beta = rouge.GetComponent<EquationRouge>().angleXZ * Mathf.Deg2Rad;
-        float alpha = rouge.GetComponent<EquationRouge>().angleYwithPlan * Mathf.Deg2Rad;
+        float beta = rouge.GetComponent<EquationRouge>().angleXZ;
+        float alpha = rouge.GetComponent<EquationRouge>().angleYwithPlan;
         float x0 = rouge.GetComponent<EquationRouge>().x0;
         float y0 = rouge.GetComponent<EquationRouge>().y0;
         float z0 = rouge.GetComponent<EquationRouge>().z0;
         float val = speedRouge * temps;
         float val2 = speed * temps;
+        if(temps <= 0)
+            transform.LookAt(GameObject.FindGameObjectWithTag("Foe").transform);
 
         //equation degeulasse.
 
-        float test = Mathf.Pow(x0 + Mathf.Sin(beta) * Mathf.Cos(alpha) * val, 2) + Mathf.Pow(z0 + Mathf.Cos(beta) * Mathf.Cos(alpha) * val, 2) + Mathf.Pow(y0 + Mathf.Sin(alpha) * val, 2);
+        /*float test = Mathf.Pow(x0 + Mathf.Sin(beta) * Mathf.Cos(alpha) * val, 2) + Mathf.Pow(z0 + Mathf.Cos(beta) * Mathf.Cos(alpha) * val, 2) + Mathf.Pow(y0 + Mathf.Sin(alpha) * val, 2);
         Debug.Log("Partie gauche : " + test + " Partie droite : " + val2*val2);
 
         float c = x0 * x0 + y0 * y0 + z0 * z0;
@@ -58,24 +60,20 @@ public class EquationOrange : MonoBehaviour
         }
         float xfinale;
         float yfinale;
-        float zfinale;
-       
+        float zfinale;*/
+        
 
 
-       /* angleYinter = Mathf.Asin(( Mathf.Sin(alpha * Mathf.Deg2Rad) * speedRouge) / speed);
+        angleYinter = Mathf.Asin(( Mathf.Sin(alpha * Mathf.Deg2Rad) * speedRouge) / speed);
         float angletr = angleYinter;
-        angleYinter = angleYinter * Mathf.Rad2Deg;
+        
 
-        angle = Mathf.Acos((speedRouge * Mathf.Cos(beta * Mathf.Deg2Rad) * Mathf.Cos(alpha * Mathf.Deg2Rad)) / speed * angleYinter);     //Mathf.Asin((speedRouge) / speed);
+        angle = Mathf.Acos((speedRouge * Mathf.Cos(beta * Mathf.Deg2Rad) * Mathf.Cos(alpha * Mathf.Deg2Rad)) / (speed * Mathf.Cos( angletr ) ));     //Mathf.Asin((speedRouge) / speed);
         float ang = angle;
-        angle = angle * Mathf.Rad2Deg;*/
-
-
-
-
-
-        /*float val = speed * temps;
-        Debug.Log(Mathf.Sin(ang));
-        transform.position = new Vector3(Mathf.Sin(ang) * val * Mathf.Cos(angletr), val * Mathf.Sin(angletr), Mathf.Cos(angletr)*Mathf.Cos(ang)*val);*/
+        angle = angle * Mathf.Rad2Deg;
+        angleYinter = angleYinter * Mathf.Rad2Deg;
+        //transform.position = new Vector3(Mathf.Cos(ang) * val2 * Mathf.Cos(angletr), val2 * Mathf.Sin(angletr), Mathf.Cos(angletr)*Mathf.Sin(ang)*val2);
+        transform.Rotate(ang,angletr,ang);
+        transform.position = new Vector3(val2,val2,val2);
     }
 }

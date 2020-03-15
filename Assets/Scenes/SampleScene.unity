@@ -231,6 +231,8 @@ MonoBehaviour:
   speedRouge: 0
   speedRougeZ: 0
   angle: 0
+  angleYinter: 0
+  tempsdinter: 0
   initRouge: 0
 --- !u!114 &450023452
 MonoBehaviour:
@@ -434,7 +436,7 @@ GameObject:
   - component: {fileID: 1465151637}
   m_Layer: 0
   m_Name: Rouge
-  m_TagString: Untagged
+  m_TagString: Foe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -451,10 +453,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0fad2b62db8c1245b6b7a5f9314fcdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x0: 2
-  angle: 0
+  x0: 5
+  z0: 5
+  y0: 0
+  angleYwithPlan: 23
+  angleXZ: 46
   speed: 0.25
-  speedZ: 0
 --- !u!65 &1465151638
 BoxCollider:
   m_ObjectHideFlags: 0
